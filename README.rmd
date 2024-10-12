@@ -1,0 +1,74 @@
+---
+title: "README"
+output:
+  md_document:
+  variant: markdown_github
+---
+  
+  ## Load Dataset
+  
+  The necessary libraries and the wine dataset are loaded.
+
+```{r load-data}
+library(tidyverse)
+
+data_url <- 'https://raw.githubusercontent.com/koimabrian/Datasets/refs/heads/main/Wine.csv'
+Wine <- read.csv(data_url, comment = "#")  # Handle potential comments in the CSV
+head(Wine)
+```
+
+## Standardize Continuous Variables
+
+The continuous variables (excluding observation number and country) are scaled.
+
+```{r standardize-data}
+data <- Wine %>% select(-Obs, -Country) %>% scale()
+```
+
+## Create Clusters with K-Means
+
+The k-means algorithm is applied to the standardized data, setting the number of clusters to 3.
+
+```{r kmeans-clustering}
+kmeans_result <- kmeans(data, centers = 3, iter.max = 100, nstart = 100)
+kmeans_result
+```
+
+## Determine the Optimal Number of Clusters
+
+To identify the optimal number of clusters, the within-cluster sum of squares (WSS), silhouette method, and gap statistic are visualized.
+
+```{r optimal-cluster-number, warning=FALSE, message=FALSE}
+library(factoextra)
+# WSS plot
+fviz_nbclust(data, kmeans, method = "wss")
+
+# Silhouette plot
+fviz_nbclust(data, kmeans, method = "silhouette")
+
+# Gap statistic
+fviz_nbclust(data, kmeans, method = "gap_stat")
+```
+
+## Cluster Visualization
+
+Clusters are visualized in a biplot, and then plotted using the original variables (Rating vs Price).
+
+```{r cluster-biplot, warning=FALSE, message=FALSE}
+# Cluster biplot
+fviz_cluster(kmeans(data, centers = 3, iter.max = 100, nstart = 100), data = data)
+```
+
+### Clusters with Original Variables
+
+Cluster labels are added to the original dataset, and clusters are visualized using the Rating and Price variables.
+
+```{r original-variable-clusters, warning=FALSE, message=FALSE}
+clusters <- kmeans(data, centers = 3, iter.max = 100, nstart = 100)
+Wine <- Wine |> mutate(cluster = clusters$cluster)
+
+# Plot clusters using Rating and Price
+Wine |> ggplot(aes(x = Rating, y = Price, col = as.factor(cluster))) + 
+  geom_point() + 
+  labs(title = "Wine Clusters by Rating and Price", color = "Cluster")
+```
