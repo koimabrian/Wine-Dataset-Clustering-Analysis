@@ -1,4 +1,4 @@
-\## Load Dataset
+## Load Dataset
 
 The necessary libraries and the wine dataset are loaded.
 
@@ -42,21 +42,21 @@ number of clusters to 3.
     kmeans_result <- kmeans(data, centers = 3, iter.max = 100, nstart = 100)
     kmeans_result
 
-    ## K-means clustering with 3 clusters of sizes 43, 32, 25
+    ## K-means clustering with 3 clusters of sizes 43, 25, 32
     ## 
     ## Cluster means:
     ##          Rating       Price    Alcohol Residual_Sugar  Sulphates          pH
     ## 1 -0.7611830170 -0.74488647 -0.3311789    -0.48277078 -0.1169446  0.37747968
-    ## 2  1.0223983350  1.07540297 -0.1561923     0.07289539 -0.4474138  0.04848825
-    ## 3  0.0005649203 -0.09531108  0.7695537     0.73705964  0.7738343 -0.71133001
+    ## 2  0.0005649203 -0.09531108  0.7695537     0.73705964  0.7738343 -0.71133001
+    ## 3  1.0223983350  1.07540297 -0.1561923     0.07289539 -0.4474138  0.04848825
     ## 
     ## Clustering vector:
-    ##   [1] 2 1 1 3 1 1 3 3 2 2 1 1 1 1 1 2 2 1 1 1 3 3 2 2 1 1 2 3 1 2 1 2 2 3 2 1 2
-    ##  [38] 3 2 1 1 1 2 1 3 2 1 1 2 2 3 3 1 2 1 1 2 3 1 1 3 1 2 3 2 2 2 3 1 1 1 1 1 3
-    ##  [75] 2 1 1 3 3 1 1 2 3 3 1 2 1 3 3 3 2 1 3 2 2 2 2 1 3 1
+    ##   [1] 3 1 1 2 1 1 2 2 3 3 1 1 1 1 1 3 3 1 1 1 2 2 3 3 1 1 3 2 1 3 1 3 3 2 3 1 3
+    ##  [38] 2 3 1 1 1 3 1 2 3 1 1 3 3 2 2 1 3 1 1 3 2 1 1 2 1 3 2 3 3 3 2 1 1 1 1 1 2
+    ##  [75] 3 1 1 2 2 1 1 3 2 2 1 3 1 2 2 2 3 1 2 3 3 3 3 1 2 1
     ## 
     ## Within cluster sum of squares by cluster:
-    ## [1] 156.1271 119.1354 114.3882
+    ## [1] 156.1271 114.3882 119.1354
     ##  (between_SS / total_SS =  34.4 %)
     ## 
     ## Available components:

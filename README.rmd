@@ -5,9 +5,9 @@ output:
   variant: markdown_github
 ---
   
-  ## Load Dataset
+## Load Dataset
   
-  The necessary libraries and the wine dataset are loaded.
+The necessary libraries and the wine dataset are loaded.
 
 ```{r load-data}
 library(tidyverse)
