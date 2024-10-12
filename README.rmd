@@ -1,17 +1,16 @@
 ---
-title: "README"
-output:
-  md_document:
-  variant: markdown_github
 ---
-  
+---
+
 ## Load Dataset
-  
+
 The necessary libraries and the wine dataset are loaded.
 
 ```{r load-data}
 library(tidyverse)
+```
 
+```{r}
 data_url <- 'https://raw.githubusercontent.com/koimabrian/Datasets/refs/heads/main/Wine.csv'
 Wine <- read.csv(data_url, comment = "#")  # Handle potential comments in the CSV
 head(Wine)
